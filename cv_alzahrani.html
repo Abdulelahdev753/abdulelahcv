@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Abdulellah Alzahrani — Occupational Therapist CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  background: #e8e6e3;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1rem 4rem;
+  color: #111;
+}
+
+/* ── TOOLBAR ── */
+.toolbar {
+  width: 100%;
+  max-width: 816px;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+.btn-download {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Roboto', Arial, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #1a1a2e;
+  border: none;
+  border-radius: 4px;
+  padding: 9px 20px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background 0.22s, transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.22s;
+  box-shadow: 0 2px 8px rgba(26,26,46,0.18);
+}
+/* shimmer sweep */
+.btn-download::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -75%;
+  width: 50%; height: 100%;
+  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  transition: left 0s;
+  pointer-events: none;
+}
+.btn-download:hover::after { left: 130%; transition: left 0.45s ease; }
+.btn-download:hover {
+  background: #0d0d1f;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(26,26,46,0.32), 0 2px 6px rgba(26,26,46,0.18);
+}
+.btn-download:active {
+  transform: translateY(0px) scale(0.97);
+  box-shadow: 0 1px 4px rgba(26,26,46,0.2);
+  transition-duration: 0.08s;
+}
+.btn-icon {
+  width: 14px; height: 14px; flex-shrink: 0;
+  transition: transform 0.22s cubic-bezier(.34,1.56,.64,1);
+}
+.btn-download:hover .btn-icon { transform: translateY(2px); }
+.btn-label { transition: letter-spacing 0.22s; }
+.btn-download:hover .btn-label { letter-spacing: 0.13em; }
+
+/* ── PAPER STACK ── */
+.paper-stack {
+  position: relative;
+  width: 100%;
+  max-width: 816px;
+}
+.paper-stack::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 14px);
+  height: 100%;
+  top: 7px;
+  background: #cbc8c4;
+  z-index: 0;
+  border-radius: 1px;
+}
+.paper-stack::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 28px);
+  height: 100%;
+  top: 13px;
+  background: #b8b5b1;
+  z-index: -1;
+  border-radius: 1px;
+}
+
+/* ── A4 PAPER ── */
+.paper {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  width: 100%;
+  max-width: 816px;
+  padding: 52px 72px 58px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.14);
+  font-size: 11pt;
+  line-height: 1.4;
+}
+
+/* ── HEADER ── */
+.cv-name {
+  font-size: 26pt;
+  font-weight: 700;
+  text-align: center;
+  color: #111;
+  margin-bottom: 3px;
+}
+.cv-title {
+  font-size: 13pt;
+  font-weight: 400;
+  text-align: center;
+  color: #111;
+  margin-bottom: 10px;
+}
+
+/* contact grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px 8px;
+  margin-bottom: 10px;
+  font-size: 10.5pt;
+}
+.contact-cell {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.contact-label { font-weight: 700; white-space: nowrap; }
+.contact-value { color: #111; text-decoration: none; }
+a.contact-value { color: #1155cc; }
+
+/* divider */
+.header-rule {
+  border: none;
+  border-top: 1px solid #111;
+  margin-bottom: 10px;
+}
+
+/* summary */
+.summary {
+  font-size: 10.5pt;
+  line-height: 1.55;
+  color: #111;
+  margin-bottom: 14px;
+}
+
+/* ── SECTIONS ── */
+.section { margin-bottom: 8px; }
+
+.section-title {
+  font-size: 11pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #111;
+  border-bottom: 1.5px solid #111;
+  padding-bottom: 2px;
+  margin-bottom: 7px;
+}
+
+/* ── EXPERIENCE ROW ── */
+.exp-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 1px;
+}
+.exp-title { font-size: 10.5pt; color: #111; font-weight: 400; flex: 1; }
+.exp-title strong { font-weight: 700; }
+.exp-date { font-size: 10.5pt; font-weight: 400; color: #111; white-space: nowrap; flex-shrink: 0; }
+
+/* bullets */
+.bullets {
+  list-style: disc;
+  padding-left: 24px;
+  margin-top: 3px;
+  margin-bottom: 10px;
+}
+.bullets li { font-size: 10.5pt; line-height: 1.5; color: #111; margin-bottom: 1px; }
+
+/* ── EDUCATION ── */
+.edu-degree { font-size: 10.5pt; color: #111; margin-bottom: 1px; }
+.edu-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 2px;
+}
+.edu-inst { font-size: 10.5pt; color: #111; flex: 1; }
+
+/* ── SKILLS ── */
+.skills-line { font-size: 10.5pt; line-height: 1.6; color: #111; margin-bottom: 3px; }
+.skills-line strong { font-weight: 700; }
+
+/* ── PRINT ── */
+@page { size: A4; margin: 0; }
+@media print {
+  html, body { background: #fff !important; padding: 0 !important; margin: 0 !important; }
+  .toolbar { display: none !important; }
+  .paper-stack::before, .paper-stack::after { display: none !important; }
+  .paper-stack { max-width: 100% !important; }
+  .paper { max-width: 100% !important; box-shadow: none !important; padding: 28px 52px 32px !important; }
+  a { color: #1155cc !important; }
+}
+</style>
+<script>
+/* ── CLICK SOUND via Web Audio API ── */
+function playClick() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    /* layer 1: sharp transient tick */
+    const buf = ctx.createBuffer(1, ctx.sampleRate * 0.06, ctx.sampleRate);
+    const data = buf.getChannelData(0);
+    for (let i = 0; i < data.length; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / data.length, 12);
+    }
+    const src = ctx.createBufferSource();
+    src.buffer = buf;
+    const g1 = ctx.createGain();
+    g1.gain.setValueAtTime(0.55, ctx.currentTime);
+    g1.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.055);
+    src.connect(g1); g1.connect(ctx.destination);
+    src.start();
+    /* layer 2: tonal body */
+    const osc = ctx.createOscillator();
+    const g2 = ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(420, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(180, ctx.currentTime + 0.04);
+    g2.gain.setValueAtTime(0.28, ctx.currentTime);
+    g2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.07);
+    osc.connect(g2); g2.connect(ctx.destination);
+    osc.start(); osc.stop(ctx.currentTime + 0.08);
+  } catch(e) {}
+}
+
+/* ── PDF EXPORT ── */
+function downloadCV() {
+  playClick();
+  window.print();
+}
+</script>
+</head>
+<body>
+
+<div class="toolbar">
+  <button class="btn-download" onclick="downloadCV()">
+    <svg class="btn-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6">
+      <path d="M8 2v8M5 7l3 3 3-3" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2 11v2a1 1 0 001 1h10a1 1 0 001-1v-2" stroke-linecap="round"/>
+    </svg>
+    <span class="btn-label">Download CV</span>
+  </button>
+</div>
+
+<div class="paper-stack">
+<div class="paper">
+
+  <h1 class="cv-name">Abdulellah Alzahrani</h1>
+  <p class="cv-title">Occupational Therapist</p>
+
+  <div class="contact-grid">
+    <div class="contact-cell">
+      <span class="contact-label">Phone Number:</span>
+      <a href="tel:0550432349" class="contact-value">0550432349</a>
+    </div>
+    <div class="contact-cell">
+      <span class="contact-label">Email:</span>
+      <a href="mailto:abdullelah3244@gmail.com" class="contact-value">abdullelah3244@gmail.com</a>
+    </div>
+    <div class="contact-cell">
+      <span class="contact-label">Location:</span>
+      <span class="contact-value">Saudi Arabia</span>
+    </div>
+    <div class="contact-cell">
+      <span class="contact-label">LinkedIn:</span>
+      <a href="https://www.linkedin.com/in/abdullelah-alzahrani" target="_blank" rel="noopener" class="contact-value">https://www.linkedin.com/in/abdullelah-alzahrani</a>
+    </div>
+  </div>
+
+  <hr class="header-rule" />
+
+  <p class="summary">Occupational Therapist with a strong background in neurological rehabilitation, orthopaedic care, and mental health. Skilled in conducting assessments, creating personalized treatment plans, and providing patient education. A collaborative team player with excellent communication and organizational abilities, dedicated to enhancing the functional independence and well-being of clients.</p>
+
+  <!-- EDUCATION -->
+  <section class="section">
+    <h2 class="section-title">Education</h2>
+    <p class="edu-degree">Bachelor's degree of Occupational Therapy</p>
+    <div class="edu-meta">
+      <span class="edu-inst">King Saud Bin Abdulaziz University of Health Sciences - Jeddah, Saudi Arabia</span>
+      <span class="exp-date">06/2022</span>
+    </div>
+    <ul class="bullets">
+      <li>Awarded second honor degree</li>
+      <li>GPA: 4.29/5</li>
+    </ul>
+  </section>
+
+  <!-- WORK HISTORY -->
+  <section class="section">
+    <h2 class="section-title">Work History</h2>
+
+    <div class="exp-row">
+      <span class="exp-title">Occupational therapist, <strong>Ejadah</strong> - Dammam</span>
+      <span class="exp-date">11/2025– 1/2026</span>
+    </div>
+    <ul class="bullets">
+      <li>Provided individualized OT for children with autism and developmental delays to improve daily functioning.</li>
+      <li>Used sensory integration and motor skill interventions to enhance recognition and coordination.</li>
+      <li>Collaborated with caregivers and teams to support skill carryover across settings.</li>
+    </ul>
+
+    <div class="exp-row">
+      <span class="exp-title">Occupational therapist, <strong>Dr. Sulaiman Al-Habib</strong> - Jeddah</span>
+      <span class="exp-date">04/2025–08/2025</span>
+    </div>
+    <ul class="bullets">
+      <li>Provided custom orthotics to reduce spasticity and support function in CP children.</li>
+      <li>Supported post-operative rehab for joint replacements, fractures, and tendon repairs.</li>
+      <li>Applied stretching and positioning to prevent contractures and improve mobility.</li>
+      <li>Facilitated fine motor skill recovery for tasks like writing and dressing.</li>
+      <li>Conducted sensory integration activities for patients with sensory deficits.</li>
+      <li>Improved fine and gross motor coordination in stroke rehabilitation programs.</li>
+    </ul>
+
+    <div class="exp-row">
+      <span class="exp-title">Occupational therapist, <strong>Al Mouwasat hospital</strong> - Madinah</span>
+      <span class="exp-date">03/2024–03/2025</span>
+    </div>
+    <ul class="bullets">
+      <li>Using therapeutic exercises and activities to increase the range of motion in affected joints.</li>
+      <li>Assisting patients in their recovery after orthopaedic surgeries such as joint replacements, fracture repairs, or tendon repairs.</li>
+      <li>Techniques to minimize scar tissue formation and improve the function and appearance of surgical scars.</li>
+      <li>Providing custom splints or braces to support healing and reduce pain by stabilizing the affected area.</li>
+      <li>Enhancing fine motor abilities to manage tasks that require precise hand movements, such as writing or buttoning a shirt.</li>
+      <li>Provide activities to improve sensory awareness and perception if the stroke has affected these areas.</li>
+    </ul>
+
+    <div class="exp-row">
+      <span class="exp-title">Home Based Occupational therapist, <strong>Speciality Medical Centre</strong> - Jeddah</span>
+      <span class="exp-date">08/2023–09/2023</span>
+    </div>
+    <ul class="bullets">
+      <li>Identify and address potential hazards in the home, recommending modifications to improve safety and accessibility.</li>
+      <li>Training to navigate the home environment safely, whether walking or using assistive devices like wheelchairs or walkers.</li>
+      <li>Caregivers receive training on how to assist with daily activities and manage the patient's care at home.</li>
+      <li>Improving the ability to perform essential daily activities such as dressing, bathing, cooking, and cleaning.</li>
+    </ul>
+
+    <div class="exp-row">
+      <span class="exp-title">Occupational therapist intern, <strong>Abdul Latif Jameel Hospital</strong> - Jeddah</span>
+      <span class="exp-date">01/2023–06/2023</span>
+    </div>
+    <ul class="bullets">
+      <li>Provides instruction to older adults and their caregivers on managing health conditions and promoting well-being.</li>
+      <li>Delivers education on energy conservation, joint protection, and lifestyle modifications.</li>
+      <li>Gives exercises and interventions to improve balance and coordination.</li>
+    </ul>
+
+    <div class="exp-row">
+      <span class="exp-title">Occupational therapist intern, <strong>National Guard Hospital</strong> - Jeddah</span>
+      <span class="exp-date">06/2022–12/2022</span>
+    </div>
+    <ul class="bullets">
+      <li>Providing recommendations for home modifications or adaptive equipment.</li>
+      <li>Developing strategies to improve cognitive skills for daily living.</li>
+      <li>Developing individualized treatment plans based on assessment findings and client goals.</li>
+      <li>Educating individuals, families, and caregivers about the condition and necessary adaptation.</li>
+    </ul>
+
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section class="section">
+    <h2 class="section-title">Certifications</h2>
+    <ul class="bullets">
+      <li>Licensed occupational therapist</li>
+      <li>Basic Life Support</li>
+      <li>Basic Infection Control Licence</li>
+    </ul>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <h2 class="section-title">Skills</h2>
+    <p class="skills-line"><strong>Hard Skills:</strong> Microsoft Office Proficiency, Case management, Goal setting proficiency, OT treatment plan development, Therapeutic interventions, Manual handling techniques, Treatment planning.</p>
+    <p class="skills-line"><strong>Soft Skills:</strong> Responsibility, Communication, Teamwork, Flexibility, Leadership.</p>
+  </section>
+
+</div>
+</div>
+
+</body>
+</html>
